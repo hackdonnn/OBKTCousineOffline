@@ -8,6 +8,7 @@ class MainViewModel : ViewModel() {
     private val selectedCuisine: MutableLiveData<Cuisine> = MutableLiveData()
     private val cartLiveData: MutableLiveData<MutableList<Dish>> = MutableLiveData()
     private val cartData: MutableList<Dish> = mutableListOf()
+    var selectedCuisineData: List<Dish> = mutableListOf()
 
     fun setSelectedCuisine(cuisine: Cuisine) {
         selectedCuisine.value = cuisine

@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.cart_item.view.*
 
-class CartAdapter(private val mCartData: List<Dish>) :
+class CartAdapter(private val mDishList: List<Dish>) :
         RecyclerView.Adapter<CartAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -25,12 +25,12 @@ class CartAdapter(private val mCartData: List<Dish>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(
-                mCartData[position]
+                mDishList[position]
         )
     }
 
     override fun getItemCount(): Int {
-        return mCartData.size
+        return mDishList.size
     }
 
 }

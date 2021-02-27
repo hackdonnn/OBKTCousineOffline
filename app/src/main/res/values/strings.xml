@@ -21,8 +21,8 @@
     <string name="txt_panner_dosa">Panner Dosa</string>
     <string name="txt_pizza">Pizza</string>
     <string name="txt_pasta">Pasta</string>
-    <string name="txt_white_pasta">White Pasta</string>
-    <string name="txt_red_pasta">Red Pasta</string>
+    <string name="txt_white_pasta">White Sauce Pasta</string>
+    <string name="txt_red_pasta">Red Sauce Pasta</string>
     <string name="txt_net_amount">Net Amount</string>
     <string name="txt_cgst">CGST @2.5%</string>
     <string name="txt_sgst">SGST @2.5%</string>

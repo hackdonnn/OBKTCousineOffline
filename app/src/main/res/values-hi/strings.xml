@@ -21,8 +21,8 @@
     <string name="txt_panner_dosa">पनीर डोसा</string>
     <string name="txt_pizza">पिज़्ज़ा</string>
     <string name="txt_pasta">पास्ता</string>
-    <string name="txt_white_pasta">सफेद पास्ता</string>
-    <string name="txt_red_pasta">लाल पास्ता</string>
+    <string name="txt_white_pasta">सफेद सॉस पास्ता</string>
+    <string name="txt_red_pasta">लाल सॉस पास्ता</string>
     <string name="txt_net_amount">शुद्ध राशि</string>
     <string name="txt_cgst">सीजीएसटी @2.5%</string>
     <string name="txt_sgst">एसजीएसटी @2.5%</string>

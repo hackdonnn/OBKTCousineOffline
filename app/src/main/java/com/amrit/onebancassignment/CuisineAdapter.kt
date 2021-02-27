@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.cuisine_list_item.view.*
 
 class CuisineAdapter(
-        private val cuisineList: List<Cuisine>,
+        private val mCuisineList: List<Cuisine>,
         private val mClickListener: OnItemClickListener
 ) :
         RecyclerView.Adapter<CuisineAdapter.ViewHolder>() {
@@ -31,11 +31,9 @@ class CuisineAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(cuisineList[position], mClickListener)
+        holder.bind(mCuisineList[position % mCuisineList.size], mClickListener)
     }
 
-    override fun getItemCount(): Int {
-        return cuisineList.size
-    }
+    override fun getItemCount() = Int.MAX_VALUE
 
 }

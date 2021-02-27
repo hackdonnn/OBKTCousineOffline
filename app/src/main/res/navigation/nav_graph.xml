@@ -19,9 +19,9 @@
     </fragment>
     <fragment
         android:id="@+id/cuisineFragment"
-        android:name="com.amrit.onebancassignment.CuisineFragment"
+        android:name="com.amrit.onebancassignment.DishFragment"
         android:label="fragment_cuisine"
-        tools:layout="@layout/fragment_cuisine">
+        tools:layout="@layout/fragment_dish">
         <action
             android:id="@+id/action_cuisineFragment_to_cartFragment"
             app:destination="@id/cartFragment" />

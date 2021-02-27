@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.fragment_cart.*
 
 class CartFragment : Fragment(), View.OnClickListener {
 
-    private val mainViewModel: MainViewModel by activityViewModels()
+    private val mMainViewModel: MainViewModel by activityViewModels()
     private lateinit var mContext: Context
 
     override fun onAttach(context: Context) {
@@ -30,37 +30,46 @@ class CartFragment : Fragment(), View.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        placeOrder.setOnClickListener(this)
-        mainViewModel.getCartLiveData().observe(viewLifecycleOwner) { v -> setUI(v) }
+        setListeners()
     }
 
-    private fun setUI(cartData: List<Dish>) {
-        val adapter = dishesOrderedList.adapter as DishesAdapter?
-        if (adapter == null) {
+    private fun setListeners() {
+        placeOrder.setOnClickListener(this)
+        mMainViewModel.getCartLiveData().observe(viewLifecycleOwner) { dishList -> setUI(dishList) }
+    }
+
+    private fun setUI(dishList: List<Dish>) {
+        if (dishList.isNotEmpty()) {
             dishesOrderedList.layoutManager = LinearLayoutManager(mContext)
-            dishesOrderedList.adapter = CartAdapter(cartData)
+            dishesOrderedList.adapter = CartAdapter(dishList)
+            setMainLayoutVisibility(true)
+            setAmountData(dishList)
         } else {
-            adapter.updateData(cartData)
-            adapter.notifyDataSetChanged()
+            setMainLayoutVisibility(false)
         }
-        if (cartData.isNotEmpty()) {
+    }
+
+    private fun setAmountData(dishList: List<Dish>) {
+        var net = 0
+        for (dish in dishList) {
+            net += (dish.price * dish.count)
+        }
+        val gst = 0.025 * net
+        val grand = gst * 2 + net
+        netAmount.text = net.toString()
+        cGst.text = gst.toString()
+        sGst.text = gst.toString()
+        grandTotal.text = grand.toString()
+    }
+
+    private fun setMainLayoutVisibility(isVisible: Boolean) {
+        if (isVisible) {
             mainCartLayout.visibility = View.VISIBLE
             noItem.visibility = View.GONE
-            var net = 0
-            for (x in cartData) {
-                net += (x.price * x.count)
-            }
-            val gst = 0.025 * net
-            val grand = gst * 2 + net
-            netAmount.text = net.toString()
-            cGst.text = gst.toString()
-            sGst.text = gst.toString()
-            grandTotal.text = grand.toString()
         } else {
             mainCartLayout.visibility = View.GONE
             noItem.visibility = View.VISIBLE
         }
-
     }
 
     override fun onClick(v: View?) {

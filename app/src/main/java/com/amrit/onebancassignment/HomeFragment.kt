@@ -3,7 +3,6 @@ package com.amrit.onebancassignment
 import android.content.Context
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
@@ -13,9 +12,9 @@ import kotlinx.android.synthetic.main.fragment_home.*
 
 
 class HomeFragment : Fragment(), CuisineAdapter.OnItemClickListener, View.OnClickListener,
-        DishesAdapter.SelectDishListener {
+        DishAdapter.SelectDishListener {
 
-    private val mainViewModel: MainViewModel by activityViewModels()
+    private val mMainViewModel: MainViewModel by activityViewModels()
     private lateinit var mContext: Context
 
     override fun onAttach(context: Context) {
@@ -32,7 +31,31 @@ class HomeFragment : Fragment(), CuisineAdapter.OnItemClickListener, View.OnClic
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setObserver()
         setUI()
+    }
+
+    private fun setObserver() {
+        mMainViewModel.getCartLiveData().observe(viewLifecycleOwner) { data -> updateUI(data) }
+    }
+
+    private fun updateUI(dishList: List<Dish>) {
+        updateCount(dishList)
+        val adapter = topThreeList.adapter as DishAdapter
+        adapter.updateData(DataSource.topDishes)
+        adapter.notifyDataSetChanged()
+    }
+
+    private fun updateCount(dishList: List<Dish>) {
+        for (dish in DataSource.topDishes) {
+            if (dishList.contains(dish)) {
+                val index = dishList.indexOf(dish)
+                val updateDish = dishList[index]
+                dish.count = updateDish.count
+            } else {
+                dish.count = 0
+            }
+        }
     }
 
     private fun setUI() {
@@ -40,16 +63,17 @@ class HomeFragment : Fragment(), CuisineAdapter.OnItemClickListener, View.OnClic
         pagerSnapHelper.attachToRecyclerView(cuisineList)
         cuisineList.layoutManager =
                 LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
+        (cuisineList.layoutManager as LinearLayoutManager).scrollToPosition(Int.MAX_VALUE / 2)
         cuisineList.adapter = CuisineAdapter(DataSource.cuisineList, this)
 
         topThreeList.layoutManager = LinearLayoutManager(mContext)
-        topThreeList.adapter = DishesAdapter(DataSource.topDishes, this)
+        topThreeList.adapter = DishAdapter(DataSource.topDishes, this)
 
         cartButton.setOnClickListener(this)
     }
 
     override fun onItemClick(cuisine: Cuisine) {
-        mainViewModel.setSelectedCuisine(cuisine)
+        mMainViewModel.setSelectedCuisine(cuisine)
         val action =
                 HomeFragmentDirections
                         .actionHomeFragmentToCuisineFragment()
@@ -64,13 +88,11 @@ class HomeFragment : Fragment(), CuisineAdapter.OnItemClickListener, View.OnClic
     }
 
     override fun onAdd(dish: Dish) {
-        Toast.makeText(mContext, resources.getString(R.string.txt_item_added), Toast.LENGTH_SHORT).show()
-        mainViewModel.addDish(dish)
+        mMainViewModel.addDish(dish)
     }
 
     override fun onRemove(dish: Dish) {
-        Toast.makeText(mContext, resources.getString(R.string.txt_item_removed), Toast.LENGTH_SHORT).show()
-        mainViewModel.removeDish(dish)
+        mMainViewModel.removeDish(dish)
     }
 
 }

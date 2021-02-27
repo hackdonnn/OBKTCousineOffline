@@ -6,11 +6,11 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.dish_list_item.view.*
 
-class DishesAdapter(
-        private var dishesList: List<Dish>,
+class DishAdapter(
+        private var mDishList: List<Dish>,
         private val mSelectDishListener: SelectDishListener
 ) :
-        RecyclerView.Adapter<DishesAdapter.ViewHolder>() {
+        RecyclerView.Adapter<DishAdapter.ViewHolder>() {
 
     interface SelectDishListener {
         fun onAdd(dish: Dish)
@@ -25,6 +25,7 @@ class DishesAdapter(
                     String.format(resources.getString(R.string.template_price), dish.price)
             dishItemRating.text =
                     String.format(resources.getString(R.string.template_rating), dish.rating)
+            dishCount.text = dish.count.toString()
             add.setOnClickListener { selectDishListener.onAdd(dish) }
             remove.setOnClickListener { selectDishListener.onRemove(dish) }
         }
@@ -38,16 +39,16 @@ class DishesAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(
-                dishesList[position], mSelectDishListener
+                mDishList[position], mSelectDishListener
         )
     }
 
     override fun getItemCount(): Int {
-        return dishesList.size
+        return mDishList.size
     }
 
-    fun updateData(data: List<Dish>) {
-        dishesList = data
+    fun updateData(dishList: List<Dish>) {
+        mDishList = dishList
     }
 
 }
