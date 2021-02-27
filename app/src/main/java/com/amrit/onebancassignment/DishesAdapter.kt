@@ -7,10 +7,10 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.dish_list_item.view.*
 
 class DishesAdapter(
-    private var dishesList: List<Dish>,
-    private val mSelectDishListener: SelectDishListener
+        private var dishesList: List<Dish>,
+        private val mSelectDishListener: SelectDishListener
 ) :
-    RecyclerView.Adapter<DishesAdapter.ViewHolder>() {
+        RecyclerView.Adapter<DishesAdapter.ViewHolder>() {
 
     interface SelectDishListener {
         fun onAdd(dish: Dish)
@@ -22,9 +22,9 @@ class DishesAdapter(
             dishItemImage.setImageResource(dish.image)
             dishItemTitle.text = resources.getString(dish.name)
             dishItemPrice.text =
-                String.format(resources.getString(R.string.template_price), dish.price)
+                    String.format(resources.getString(R.string.template_price), dish.price)
             dishItemRating.text =
-                String.format(resources.getString(R.string.template_rating), dish.rating)
+                    String.format(resources.getString(R.string.template_rating), dish.rating)
             add.setOnClickListener { selectDishListener.onAdd(dish) }
             remove.setOnClickListener { selectDishListener.onRemove(dish) }
         }
@@ -32,13 +32,13 @@ class DishesAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.dish_list_item, parent, false)
+                .inflate(R.layout.dish_list_item, parent, false)
         return ViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(
-            dishesList[position], mSelectDishListener
+                dishesList[position], mSelectDishListener
         )
     }
 
@@ -46,7 +46,7 @@ class DishesAdapter(
         return dishesList.size
     }
 
-    fun updateData(data: List<Dish>){
+    fun updateData(data: List<Dish>) {
         dishesList = data
     }
 

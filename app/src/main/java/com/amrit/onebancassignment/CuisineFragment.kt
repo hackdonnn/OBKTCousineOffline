@@ -60,12 +60,12 @@ class CuisineFragment : Fragment(), View.OnClickListener, DishesAdapter.SelectDi
     }
 
     override fun onAdd(dish: Dish) {
-        Toast.makeText(mContext,resources.getString(R.string.txt_item_added), Toast.LENGTH_SHORT).show()
+        Toast.makeText(mContext, resources.getString(R.string.txt_item_added), Toast.LENGTH_SHORT).show()
         mainViewModel.addDish(dish)
     }
 
     override fun onRemove(dish: Dish) {
-        Toast.makeText(mContext,resources.getString(R.string.txt_item_removed),Toast.LENGTH_SHORT).show()
+        Toast.makeText(mContext, resources.getString(R.string.txt_item_removed), Toast.LENGTH_SHORT).show()
         mainViewModel.removeDish(dish)
     }
 

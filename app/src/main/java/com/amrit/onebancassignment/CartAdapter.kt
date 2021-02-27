@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.cart_item.view.*
 
 class CartAdapter(private val mCartData: List<Dish>) :
-    RecyclerView.Adapter<CartAdapter.ViewHolder>() {
+        RecyclerView.Adapter<CartAdapter.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(dish: Dish) = with(itemView) {
@@ -19,13 +19,13 @@ class CartAdapter(private val mCartData: List<Dish>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.cart_item, parent, false)
+                .inflate(R.layout.cart_item, parent, false)
         return ViewHolder(itemView)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(
-            mCartData[position]
+                mCartData[position]
         )
     }
 

@@ -5,7 +5,7 @@ data class Dish(
         val name: Int,
         val price: Int,
         val rating: Double,
-){
-        var count : Int = 0
+) {
+    var count: Int = 0
 }
 

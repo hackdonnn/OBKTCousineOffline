@@ -9,7 +9,7 @@
         android:id="@+id/homeFragment"
         android:name="com.amrit.onebancassignment.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_cuisineFragment"
             app:destination="@id/cuisineFragment" />
@@ -21,7 +21,7 @@
         android:id="@+id/cuisineFragment"
         android:name="com.amrit.onebancassignment.CuisineFragment"
         android:label="fragment_cuisine"
-        tools:layout="@layout/fragment_cuisine" >
+        tools:layout="@layout/fragment_cuisine">
         <action
             android:id="@+id/action_cuisineFragment_to_cartFragment"
             app:destination="@id/cartFragment" />

@@ -7,10 +7,10 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.cuisine_list_item.view.*
 
 class CuisineAdapter(
-    private val cuisineList: List<Cuisine>,
-    private val mClickListener: OnItemClickListener
+        private val cuisineList: List<Cuisine>,
+        private val mClickListener: OnItemClickListener
 ) :
-    RecyclerView.Adapter<CuisineAdapter.ViewHolder>() {
+        RecyclerView.Adapter<CuisineAdapter.ViewHolder>() {
 
     interface OnItemClickListener {
         fun onItemClick(cuisine: Cuisine)
@@ -26,7 +26,7 @@ class CuisineAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.cuisine_list_item, parent, false)
+                .inflate(R.layout.cuisine_list_item, parent, false)
         return ViewHolder(itemView)
     }
 
