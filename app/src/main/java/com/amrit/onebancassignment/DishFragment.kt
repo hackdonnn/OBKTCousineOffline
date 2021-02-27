@@ -74,7 +74,7 @@ class DishFragment : Fragment(), View.OnClickListener, DishAdapter.SelectDishLis
 
     override fun onClick(v: View?) {
         val action =
-                CuisineFragmentDirections
+                DishFragmentDirections
                         .actionCuisineFragmentToCartFragment()
         view?.findNavController()?.navigate(action)
     }
